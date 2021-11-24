@@ -22,9 +22,22 @@ from airflow.utils.email import send_email
         and it will reflect everywhere
 """
 class PdilDagUtils:
+
+    """
+        This is the constructor that initializes the class with the functions and other variables
+    """
+
     def __init__(self):
         self.dag = ""
 
+
+    """
+        This function is called as a callback from the HttpSensor. Check in the Sensor code below you will see
+        there is a 'response_check' option that takes a callable as parameter. In this code we have given the
+        'monitor_job' as the callable.
+
+        response : This variable holds the response received from the API
+    """
     def monitor_job(response):
         print('###################################monitor process response ##################')
         print(response.text)
