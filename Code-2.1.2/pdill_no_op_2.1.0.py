@@ -26,7 +26,7 @@ def notify_email(kwargs):
 
     # email title.
     if dag_run._state == "success":
-        title = f"[ Airflow Success Alert  ]: {dag_run.dag_id} Execution Completed"
+        title = "[ Airflow Success Alert  ]: {dag_id} Execution Completed".format(dag_id=dag_run.dag_id)
         body = """
             Hi Everyone, <br>
             <br>
@@ -37,7 +37,7 @@ def notify_email(kwargs):
             """.format(dag_id=dag_run.dag_id)
     else:
         if ti.state == "failed":
-            title = f"[ Airflow Failure Alert ]: {ti.task_id} Failed for {dag_run.dag_id} failed"
+            title = "[ Airflow Failure Alert ]: {task_id} Failed for {dag_id} failed".format(task_id=ti.task_id, dag_id=dag_run.dag_id)
             body = """
             Hi Everyone, <br>
             <br>
@@ -48,7 +48,7 @@ def notify_email(kwargs):
             Airflow bot <br>
             """.format(task_id=ti.task_id,log_link=ti.log_url )
         elif ti.state == "success":
-            title = f"[ Airflow Success Alert ]: {ti.task_id} Succeeded for {dag_run.dag_id}"
+            title = "[ Airflow Success Alert ]: {task_id} Succeeded for {dag_id}".format(task_id=ti.task_id, dag_id=dag_run.dag_id)
             body = """
             Hi Everyone, <br>
             <br>
