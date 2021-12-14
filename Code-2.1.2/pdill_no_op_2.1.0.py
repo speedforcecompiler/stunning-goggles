@@ -1,11 +1,17 @@
 from datetime import datetime
 from airflow import DAG
 import json
+
+# Imports for v1.10.10
 # from airflow.operators.http_operator import SimpleHttpOperator
+# from airflow.sensors.http_sensor import HttpSensor
+
+# Imports for v2.1.0
 from airflow.providers.http.operators.http import SimpleHttpOperator
 from airflow.providers.http.sensors.http import HttpSensor
+
+# Common imports
 from airflow.operators.python_operator import PythonOperator
-# from airflow.sensors.http_sensor import HttpSensor
 from airflow.utils.email import send_email
 from airflow import AirflowException
 

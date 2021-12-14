@@ -6,8 +6,10 @@ import json
 
 from airflow import AirflowException
 from airflow.operators.python import PythonOperator
-from airflow.providers.http.operators.http import SimpleHttpOperator
-from airflow.providers.http.sensors.http import HttpSensor
+# from airflow.providers.http.operators.http import SimpleHttpOperator
+from airflow.operators.http_operator import SimpleHttpOperator
+# from airflow.providers.http.sensors.http import HttpSensor
+from airflow.sensors.http_sensor import HttpSensor
 from airflow.utils.email import send_email
 
 """
