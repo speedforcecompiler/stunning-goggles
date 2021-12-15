@@ -11,7 +11,7 @@ from airflow.providers.http.operators.http import SimpleHttpOperator
 from airflow.providers.http.sensors.http import HttpSensor
 
 # Common imports
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator
 from airflow.utils.email import send_email
 from airflow import AirflowException
 
@@ -109,7 +109,6 @@ datamasking_pipeline_execution=SimpleHttpOperator(
     headers={"Content-Type": "application/json"},
     data="{{ dag_run.conf['data'] | tojson }}",
     response_check=lambda response: response.json()['configurationId'] != None,
-    xcom_push=True,
     log_response=True,
     dag=dag
 )
@@ -118,7 +117,6 @@ get_configurationId = PythonOperator(
     task_id='get_configurationId',
     dag=dag,
     python_callable=resolve_config_id,
-    provide_context=True
 )
 
 datamasking_extraction = SimpleHttpOperator(
