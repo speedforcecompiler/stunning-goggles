@@ -1,0 +1,7 @@
+{
+    "task_id":"batch_init",
+    "task_type": "PythonOperator",
+    "downstream":[
+        {}
+    ]
+}
